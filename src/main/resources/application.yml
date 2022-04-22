@@ -1,0 +1,17 @@
+
+server:
+  port: 8089
+
+review-service-url: "https://ta-bot-reviews-management.herokuapp.com"
+review-service-review: "/review"
+review-service-author: "/author"
+review-service-place: "/place"
+
+user-service-url: "http://localhost:8088"
+user-service-user: "/user"
+user-service-register: "/register"
+user-service-subscription: "/subscription"
+user-service-city: "/city"
+
+place-service-url: "https://ta-bot-location-management.herokuapp.com"
+place-service-place: "/place"
