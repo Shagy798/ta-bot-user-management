@@ -1,9 +1,7 @@
-package com.netcracker.edu.review.service;
+package com.netcracker.edu.api.service;
 
-import com.netcracker.edu.review.model.Review;
-import com.netcracker.edu.review.model.User;
-import com.netcracker.edu.review.model.ui.UiReview;
-import com.netcracker.edu.review.model.ui.UiUser;
+import com.netcracker.edu.api.model.User;
+import com.netcracker.edu.api.model.ui.UiUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

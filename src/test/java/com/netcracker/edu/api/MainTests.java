@@ -1,4 +1,4 @@
-package com.netcracker.edu.review;
+package com.netcracker.edu.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

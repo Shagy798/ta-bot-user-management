@@ -1,10 +1,7 @@
-package com.netcracker.edu.review.service;
+package com.netcracker.edu.api.service;
 
-import com.netcracker.edu.review.model.Place;
-import com.netcracker.edu.review.model.Review;
-import com.netcracker.edu.review.model.User;
-import com.netcracker.edu.review.model.ui.UiPlace;
-import com.netcracker.edu.review.model.ui.UiUser;
+import com.netcracker.edu.api.model.*;
+import com.netcracker.edu.api.model.ui.UiPlace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -22,13 +19,17 @@ public class PlaceService {
     @Value("#{'${place-service-url}' + '${place-service-place}'}")
     private String placeServiceUrl;
 
+    @Value("#{'${place-service-url}' + '${place-service-place}'+ '${place-service-category}'}")
+    private String placeCategoryUrl;
+
     @Autowired
     private RestTemplate restTemplate;
 
+/*
     public Place getById(String id) {
         String url = placeServiceUrl + "/{id}";
         return restTemplate.getForObject(url, Place.class, id);
-    }
+    }*/
 
     public Place getByAddress(String address) {
         String url = placeServiceUrl + "/{address}";
@@ -44,9 +45,19 @@ public class PlaceService {
         return restTemplate.exchange(placeServiceUrl, HttpMethod.POST, request, Place.class);
     }
 
-    public void deleteById(int   id) {
+    public List<Place> findPlaceByCategory(Category category) {
+        HttpEntity request = new HttpEntity(category);
+        return Arrays.asList(restTemplate.postForObject(placeCategoryUrl, request, Place[].class));
+    }
+
+    public void deleteById(int id) {
         String url = placeServiceUrl + "/{id}";
         restTemplate.delete(url, id);
     }
 
+    public List<Place> getPlaceIds(Integer[] placeId) {
+        HttpEntity request = new HttpEntity(placeId);
+        String url = placeServiceUrl + "/placeId";
+        return Arrays.asList(restTemplate.postForObject(url, request, Place[].class));
+    }
 }
