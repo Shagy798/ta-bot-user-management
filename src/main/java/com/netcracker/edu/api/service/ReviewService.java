@@ -16,19 +16,19 @@ import java.util.List;
 @Service
 public class ReviewService {
 
-    @Value("#{'${review-service-url}' + '${review-service-author}'}")
+    @Value("#{'${review-service-url}' +'${review-service-review}' + '${review-service-author}'}")
     private String reviewServiceUrlFindByAuthorId;
 
     @Value("#{'${review-service-url}'+ '${review-service-review}' + '${review-service-place}'}")
     private String reviewServiceUrlFindByPlaceId;
 
-    @Value("#{'${review-service-url}' + '${review-service-place}'}")
+    @Value("#{'${review-service-url}'+ '${review-service-review}' + '${review-service-place}'}")
     private String reviewServiceUrlFindByPlaceIdAndAuthorId;
 
     @Value("#{'${review-service-url}' + '${review-service-review}'}")
     private String reviewServiceUrl;
 
-    @Value("#{'${review-service-url}' +  '${review-service-review}'+'${review-service-mark}'+ '${review-service-place}'}")
+    @Value("#{'${review-service-url}' +  '${review-service-review}'+ '${review-service-place}'+'${review-service-mark}'}")
     private String reviewServiceMarkId;
 
     @Autowired

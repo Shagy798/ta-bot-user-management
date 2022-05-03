@@ -22,11 +22,4 @@ public class RatingController {
         return ResponseEntity.ok(ratingManager.ratingToString());
     }
 
-
-    @PostMapping("/rating/topplaces")
-    public ResponseEntity <List<Rating>> findPopularPlace(@RequestBody int placeId[]) {
-        return ResponseEntity.ok(ratingManager.findPopularPlace(placeId));
-    }
-
-
 }
