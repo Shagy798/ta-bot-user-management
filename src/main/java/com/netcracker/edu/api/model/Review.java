@@ -14,8 +14,5 @@ public class Review {
     private Date dateEdit = null;
     private int placeId;
 
-    public Review() {
-    }
-
 }
 

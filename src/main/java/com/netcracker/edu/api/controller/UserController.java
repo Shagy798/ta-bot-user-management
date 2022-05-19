@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/")
 public class UserController {
@@ -18,7 +20,6 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody UiUser uiUser) {
         return userManager.createUser(uiUser);
-
     }
 
     @PutMapping("/subscription/{id}")
@@ -29,6 +30,10 @@ public class UserController {
     @PutMapping("/city/{id}")
     public ResponseEntity<User> putCityByUserId(@PathVariable("id") String id, @RequestBody UiUser uiUser) {
         return userManager.putCity(id, uiUser);
+    }
 
+    @GetMapping("/subscription")
+    public ResponseEntity<List<User>> findUsersBySubscription(){
+        return ResponseEntity.ok(userManager.findUsersBySubscription());
     }
 }

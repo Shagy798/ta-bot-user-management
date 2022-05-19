@@ -44,15 +44,14 @@ public class ReviewService {
         return Arrays.asList(restTemplate.getForObject(url, Review[].class, authorId, page));
     }
 
-
     public List<Review> getByPlaceId(int placeId, int page) {
         String url = reviewServiceUrlFindByPlaceId + "/{placeId}" + "/{page}";
         return Arrays.asList(restTemplate.getForObject(url, Review[].class, placeId, page));
     }
 
     public List<Review> getByMarkIdAndPlaceId(int markId, int placeId, int page) {
-        String url = reviewServiceMarkId + "/{markId}"+"/{placeId}" + "/{page}";
-        return Arrays.asList(restTemplate.getForObject(url, Review[].class, markId,placeId, page));
+        String url = reviewServiceMarkId + "/{markId}" + "/{placeId}" + "/{page}";
+        return Arrays.asList(restTemplate.getForObject(url, Review[].class, markId, placeId, page));
     }
 
     public List<Review> getByPlaceIdAndAuthorId(int placeId, int authorId, int page) {
@@ -64,7 +63,6 @@ public class ReviewService {
         String url = reviewServiceUrl + "/{id}";
         HttpEntity request = new HttpEntity(review);
         return restTemplate.exchange(url, HttpMethod.PUT, request, Review.class, id);
-
     }
 
     public void deleteById(String id) {
@@ -75,7 +73,6 @@ public class ReviewService {
     public ResponseEntity<Review> createReview(UiReview review) {
         HttpEntity request = new HttpEntity(review);
         return restTemplate.exchange(reviewServiceUrl, HttpMethod.POST, request, Review.class);
-
     }
 
 }

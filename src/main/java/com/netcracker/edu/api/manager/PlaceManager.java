@@ -30,8 +30,8 @@ public class PlaceManager {
         return ratingService.findPopularPlace(placeIds);
     }
 
-    public Place getByAddress(String address) {
-        return placeService.getByAddress(address);
+    public Place getByAddress(UiPlace uiPlace) {
+        return placeService.getByAddress(uiPlace);
     }
 
     public List<Place> getAll() {
@@ -48,5 +48,9 @@ public class PlaceManager {
 
     public List<Place> getPlaceIds(Integer[] placeId) {
         return placeService.getPlaceIds(placeId);
+    }
+
+    public Place getByName(UiPlace uiPlace) {
+        return placeService.getByName(uiPlace);
     }
 }

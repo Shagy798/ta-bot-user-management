@@ -8,8 +8,4 @@ public class Mark {
     private int id;
     private String value;
 
-    public Mark() {
-    }
-
-
 }

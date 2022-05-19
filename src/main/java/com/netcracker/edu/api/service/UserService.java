@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -33,7 +36,6 @@ public class UserService {
         return restTemplate.getForObject(url, User.class, id);
     }
 
-
     public ResponseEntity<User> createUser(UiUser uiUser) {
         HttpEntity request = new HttpEntity(uiUser);
         return restTemplate.exchange(userServiceUrlRegistration, HttpMethod.POST, request, User.class);
@@ -43,14 +45,16 @@ public class UserService {
         String url = userServiceUrlSubcription + "/{id}";
         HttpEntity request = new HttpEntity(uiUser);
         return restTemplate.exchange(url, HttpMethod.PUT, request, User.class, id);
-
     }
 
     public ResponseEntity<User> putCity(String id, UiUser uiUser) {
         String url = userServiceUrlCity + "/{id}";
         HttpEntity request = new HttpEntity(uiUser);
         return restTemplate.exchange(url, HttpMethod.PUT, request, User.class, id);
-
     }
 
+    public List<User> findUsersBySubscription() {
+        String url = userServiceUrlSubcription;
+        return Arrays.asList(restTemplate.getForObject(url, User[].class));
+    }
 }

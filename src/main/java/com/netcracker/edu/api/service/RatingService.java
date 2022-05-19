@@ -20,7 +20,6 @@ public class RatingService {
     @Value("#{'${rating-service-url}' + '${rating-service-rating}'+ '${rating-service-topplaces}'}")
     private String ratingTopPlaceUrl;
 
-
     @Autowired
     private RestTemplate restTemplate;
 

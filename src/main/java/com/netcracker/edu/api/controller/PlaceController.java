@@ -17,9 +17,14 @@ public class PlaceController {
     @Autowired
     private PlaceManager placeManager;
 
-    @GetMapping("/place/{address}")
-    public ResponseEntity<Place> getPlaceByAddress(@PathVariable("address") String address) {
-        return ResponseEntity.ok(placeManager.getByAddress(address));
+    @PostMapping("/place/address")
+    public ResponseEntity<Place> getPlaceByAddress(@RequestBody UiPlace uiPlace) {
+        return ResponseEntity.ok(placeManager.getByAddress(uiPlace));
+    }
+
+    @PostMapping("/place/name")
+    public ResponseEntity<Place> getPlaceByName(@RequestBody UiPlace uiPlace) {
+        return ResponseEntity.ok(placeManager.getByName(uiPlace));
     }
 
     @GetMapping("/place")
@@ -45,6 +50,6 @@ public class PlaceController {
     @DeleteMapping("/place/{id}")
     public ResponseEntity<HttpStatus> deletePlaceById(@PathVariable("id") int id) {
         placeManager.deleteById(id);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.noContent().build();
     }
 }

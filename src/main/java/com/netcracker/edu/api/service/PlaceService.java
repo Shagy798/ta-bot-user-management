@@ -31,9 +31,9 @@ public class PlaceService {
         return restTemplate.getForObject(url, Place.class, id);
     }*/
 
-    public Place getByAddress(String address) {
-        String url = placeServiceUrl + "/{address}";
-        return restTemplate.getForObject(url, Place.class, address);
+    public Place getByAddress(UiPlace uiPlace) {
+        String url = placeServiceUrl + "/address";
+        return restTemplate.getForObject(url, Place.class, uiPlace);
     }
 
     public List<Place> getAll() {
@@ -59,5 +59,10 @@ public class PlaceService {
         HttpEntity request = new HttpEntity(placeId);
         String url = placeServiceUrl + "/placeId";
         return Arrays.asList(restTemplate.postForObject(url, request, Place[].class));
+    }
+
+    public Place getByName(UiPlace uiPlace) {
+        String url = placeServiceUrl + "/name";
+        return restTemplate.postForObject(url, uiPlace, Place.class);
     }
 }

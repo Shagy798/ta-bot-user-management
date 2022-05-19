@@ -16,7 +16,6 @@ public class RatingController {
     @Autowired
     private RatingManager ratingManager;
 
-
     @GetMapping("/rating/tenbestplace")
     public ResponseEntity <List<RatingResponse>> findTopPlace() {
         return ResponseEntity.ok(ratingManager.ratingToString());

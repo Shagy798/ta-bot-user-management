@@ -10,4 +10,5 @@ public class UiReview {
     private int authorId;
     private String mark;
     public int placeId;
+
 }

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserManager {
 
@@ -23,5 +25,9 @@ public class UserManager {
 
     public ResponseEntity<User> putCity(String id, UiUser uiUser) {
         return userService.putCity(id, uiUser);
+    }
+
+    public List<User> findUsersBySubscription() {
+        return userService.findUsersBySubscription();
     }
 }

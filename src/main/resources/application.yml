@@ -7,13 +7,13 @@ review-service-author: "/author"
 review-service-place: "/place"
 review-service-mark: "/mark"
 
-user-service-url: "https://ta-bot-user-management.herokuapp.com"
+user-service-url: "http://localhost:8085"
 user-service-user: "/user"
 user-service-register: "/register"
 user-service-subscription: "/subscription"
 user-service-city: "/city"
 
-place-service-url: "https://ta-bot-location-management.herokuapp.com"
+place-service-url: "http://localhost:8086"
 place-service-place: "/place"
 place-service-category: "/category"
 
