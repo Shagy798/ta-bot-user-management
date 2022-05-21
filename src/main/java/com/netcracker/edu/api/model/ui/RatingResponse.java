@@ -7,6 +7,7 @@ public class RatingResponse {
 
     private int number;
     private String namePlace;
+    private String address;
     private String ratingRatio;
 
 }

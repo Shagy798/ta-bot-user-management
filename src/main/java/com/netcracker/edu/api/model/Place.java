@@ -9,5 +9,6 @@ public class Place {
     private String city;
     private String address;
     private Category category;
+    private String name;
 
 }

@@ -2,8 +2,8 @@ package com.netcracker.edu.api.controller;
 
 import com.netcracker.edu.api.manager.ReviewManager;
 import com.netcracker.edu.api.model.Review;
+import com.netcracker.edu.api.model.ui.ReviewResponse;
 import com.netcracker.edu.api.model.ui.UiReview;
-import com.netcracker.edu.api.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class ReviewController {
     }
 
     @GetMapping("/author/{authorId}/{page}")
-    public ResponseEntity<List<Review>> getEmployeeByAuthorId(@PathVariable("authorId") int authorId, @PathVariable("page") int page) {
+    public ResponseEntity<List<ReviewResponse>> getEmployeeByAuthorId(@PathVariable("authorId") int authorId, @PathVariable("page") int page) {
         return ResponseEntity.ok(reviewManager.getByAuthorId(authorId, page));
     }
 

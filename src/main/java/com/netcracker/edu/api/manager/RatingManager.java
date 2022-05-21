@@ -38,18 +38,23 @@ public class RatingManager {
             //places.indexOf(ratings.get(i).getId());
             int placeId = placeIds[i];
 
-            Place findPlace = places.stream().filter(place -> placeId == place.getId()).findFirst().orElse(null);
-
-            RatingResponse uI = new RatingResponse();
-            int number = i + 1;
-            uI.setNumber(number);
-            uI.setNamePlace(findPlace.getAddress());
-            uI.setRatingRatio("(" + ratings.get(i).getPosscore() + " / " + ratings.get(i).getNegscore() + ")");
-
-            ratingResponses.add(uI);
+            createAnswer(ratings, places, ratingResponses, i, placeId);
 
         }
         return ratingResponses;
+    }
+
+    static void createAnswer(List<Rating> ratings, List<Place> places, List<RatingResponse> ratingResponses, int i, int placeId) {
+        Place findPlace = places.stream().filter(place -> placeId == place.getId()).findFirst().orElse(null);
+
+        RatingResponse uI = new RatingResponse();
+        int number = i + 1;
+        uI.setNumber(number);
+        uI.setNamePlace(findPlace.getName());
+        uI.setAddress(findPlace.getAddress());
+        uI.setRatingRatio("(" + ratings.get(i).getPosscore() + " / " + ratings.get(i).getNegscore() + ")");
+
+        ratingResponses.add(uI);
     }
 
     public List<Rating> findPopularPlace(int[] placeId) {

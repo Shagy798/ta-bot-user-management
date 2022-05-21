@@ -65,4 +65,9 @@ public class PlaceService {
         String url = placeServiceUrl + "/name";
         return restTemplate.postForObject(url, uiPlace, Place.class);
     }
+
+    public Place getPlaceById(int id) {
+        String url = placeServiceUrl + "/placeId" + "/{id}";
+        return restTemplate.getForObject(url, Place.class, id);
+    }
 }
