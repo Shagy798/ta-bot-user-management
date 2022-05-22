@@ -27,7 +27,7 @@ public class RatingService {
         return Arrays.asList(restTemplate.getForObject(ratingServiceUrl, Rating[].class));
     }
 
-    public List<Rating> findPopularPlace(int[] placeId) {
+    public List<Rating> findPopularPlace(Integer[] placeId) {
         HttpEntity request = new HttpEntity(placeId);
         return Arrays.asList(restTemplate.postForObject(ratingTopPlaceUrl, request, Rating[].class));
     }

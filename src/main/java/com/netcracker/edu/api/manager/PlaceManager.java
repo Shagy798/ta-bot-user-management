@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -25,20 +26,41 @@ public class PlaceManager {
 
     public List<RatingResponse> placeByCategory(Category category) {
         List<Place> placeByCategory = placeService.findPlaceByCategory(category);
-        int[] placeIds = new int[placeByCategory.size()];
-        for (int i = 0; i < placeByCategory.size(); i++) {
-            placeIds[i] = placeByCategory.get(i).getId();
-        }
+
+        Integer[] placeIds = placeByCategory.stream()
+                .map(Place::getId)
+                .toArray(Integer[]::new);
 
         List<Rating> ratings = ratingService.findPopularPlace(placeIds);
 
         List<RatingResponse> ratingResponses = new ArrayList<>();
 
-        for (int i = 0; i < ratings.size(); i++) {
+        Integer[] ratingIds = ratings.stream()
+                .map(Rating::getId)
+                .toArray(Integer[]::new);
 
-            int ratingId = ratings.get(i).getId();
+        int counterToRating = 0;
+        for (int i = 0; i < placeIds.length; i++) {
 
-            RatingManager.createAnswer(ratings, placeByCategory, ratingResponses, i, ratingId);
+            RatingResponse uI = new RatingResponse();
+
+            int number = i + 1;
+
+            if(Arrays.asList(ratingIds).contains(placeIds[i])){
+                int ratingId = ratings.get(counterToRating).getId();
+                Place findPlace = placeByCategory.stream().filter(place -> ratingId == place.getId()).findFirst().orElse(null);
+                uI.setNamePlace(findPlace.getName());
+                uI.setAddress(findPlace.getAddress());
+                uI.setRatingRatio("(" + ratings.get(counterToRating).getPosscore() + " / " + ratings.get(counterToRating).getNegscore() + ")");
+                counterToRating = counterToRating + 1;
+            }else{
+                uI.setNamePlace(placeByCategory.get(i).getName());
+                uI.setAddress(placeByCategory.get(i).getAddress());
+                uI.setRatingRatio("Без рейтинга");
+            }
+            uI.setNumber(number);
+
+            ratingResponses.add(uI);
         }
 
         return ratingResponses;
