@@ -1,6 +1,7 @@
 package com.netcracker.edu.api.controller;
 
 import com.netcracker.edu.api.manager.UserManager;
+import com.netcracker.edu.api.model.Role;
 import com.netcracker.edu.api.model.User;
 import com.netcracker.edu.api.model.ui.UiUser;
 import com.netcracker.edu.api.service.UserService;
@@ -35,5 +36,10 @@ public class UserController {
     @GetMapping("/subscription")
     public ResponseEntity<List<User>> findUsersBySubscription(){
         return ResponseEntity.ok(userManager.findUsersBySubscription());
+    }
+
+    @GetMapping("/role/{id}")
+    public ResponseEntity<Role> findRoleByUserId(@PathVariable("id") int id){
+        return ResponseEntity.ok(userManager.findRoleByUserId(id));
     }
 }

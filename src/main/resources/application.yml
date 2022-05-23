@@ -12,6 +12,7 @@ user-service-user: "/user"
 user-service-register: "/register"
 user-service-subscription: "/subscription"
 user-service-city: "/city"
+user-service-role: "/role"
 
 place-service-url: "https://ta-bot-location-management.herokuapp.com"
 place-service-place: "/place"

@@ -1,5 +1,6 @@
 package com.netcracker.edu.api.manager;
 
+import com.netcracker.edu.api.model.Role;
 import com.netcracker.edu.api.model.User;
 import com.netcracker.edu.api.model.ui.UiUser;
 import com.netcracker.edu.api.service.UserService;
@@ -30,4 +31,6 @@ public class UserManager {
     public List<User> findUsersBySubscription() {
         return userService.findUsersBySubscription();
     }
+
+    public Role findRoleByUserId(int id){return userService.findRoleByUserId(id);}
 }

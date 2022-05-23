@@ -1,5 +1,7 @@
 package com.netcracker.edu.api.service;
 
+import com.netcracker.edu.api.model.Review;
+import com.netcracker.edu.api.model.Role;
 import com.netcracker.edu.api.model.User;
 import com.netcracker.edu.api.model.ui.UiUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class UserService {
 
     @Value("#{'${user-service-url}' + '${user-service-user}'+ '${user-service-city}'}")
     private String userServiceUrlCity;
+
+    @Value("#{'${user-service-url}' + '${user-service-user}' + '${user-service-role}'}")
+    private String userServiceUrlRole;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -56,5 +61,10 @@ public class UserService {
     public List<User> findUsersBySubscription() {
         String url = userServiceUrlSubcription;
         return Arrays.asList(restTemplate.getForObject(url, User[].class));
+    }
+
+    public Role findRoleByUserId(int id) {
+        String url = userServiceUrlRole+"/{id}";
+        return restTemplate.getForObject(url, Role.class, id);
     }
 }
